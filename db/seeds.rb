@@ -1,14 +1,17 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
+Api::V1::WordListItem.delete_all
+Api::V1::WordList.delete_all
+User.delete_all
 
-user = User.create(email: 'test@email.com', username: 'test', password: 'asdf1!')
+user = User.create(email: 'test@email.com', username: 'test', password: 'superpass!', password_confirmation: 'superpass!')
+word_list = Api::V1::WordList.create(name: 'Common Words', language: 'German', user_id: user.id)
 
-word_list = Api::V1::WordList.create(name: 'Common Words', language: 'German')
-
-user.word_lists << word_list
-user.save
+unless user.errors.full_messages.count > 0
+	user.save
+else
+	puts user.errors.full_messages
+end
 
 [ 
-	{ word: 'hallo', translation: 'hello', context: 'Hallo und Wilkommen!', word_list_id: user.word_lists.first.id },
-	{ word: 'gut', translation: 'good', context: 'Gut essen!', word_list_id: user.word_lists.first.id }
+	{ word: 'hallo', translation: 'hello', context: 'Hallo und Willkommen!', word_list_id: word_list.id },
+	{ word: 'gut', translation: 'good', context: 'Gut essen!', word_list_id: word_list.id }
 ].each { |attr| Api::V1::WordListItem.create(attr) }

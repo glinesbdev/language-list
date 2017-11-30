@@ -1,0 +1,1 @@
+json.array! @word_list.errors.full_messages

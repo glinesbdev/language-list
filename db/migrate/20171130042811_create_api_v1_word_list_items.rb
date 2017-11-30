@@ -4,7 +4,7 @@ class CreateApiV1WordListItems < ActiveRecord::Migration[5.1]
     	t.string :word
     	t.string :translation
     	t.text :context
-    	t.integer :word_list_id
+      t.integer :word_list_id
 
       t.timestamps
     end
