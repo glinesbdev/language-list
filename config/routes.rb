@@ -5,8 +5,9 @@ Rails.application.routes.draw do
 
   scope :api do
     scope :v1 do
-      resources :word_lists, controller: 'api/v1/word_list'
-      resources :word_list_item, controller: 'api/v1/word_list_item'
+    	resources :user
+      resources :word_list, controller: 'api/v1/word_list'
+      resources :word_list_item, controller: 'api/v1/word_list_item', except: [:index]
     end
   end
 end

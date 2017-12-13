@@ -6,7 +6,15 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :trackable, :validatable,
           :confirmable, :omniauthable
+
+  include Rails.application.routes.url_helpers
   include DeviseTokenAuth::Concerns::User
+
+  def to_builder
+    Jbuilder.new do |user|
+      user.url user_path(id: self.id)
+    end
+  end
 
   private
 

@@ -1,5 +1,6 @@
 class Api::V1::WordListController < ApplicationController
   before_action :authenticate_user!
+  before_action :get_list, only: [:show, :update, :destroy]
 
   def index
     @word_lists = current_user.word_lists
@@ -8,8 +9,6 @@ class Api::V1::WordListController < ApplicationController
   end
 
   def show
-    @word_list = Api::V1::WordList.find(params[:id])
-
     render :show
   end
 
@@ -25,8 +24,6 @@ class Api::V1::WordListController < ApplicationController
   end
 
   def update
-    @word_list = Api::V1::WordList.find(params[:id])
-
     if @word_list.update(word_list_params)
       render :show
     else
@@ -35,7 +32,6 @@ class Api::V1::WordListController < ApplicationController
   end
 
   def destroy
-    @word_list = Api::V1::WordList.find(params[:id])
     list_name = @word_list.name
 
     if @word_list.destroy
@@ -49,5 +45,9 @@ class Api::V1::WordListController < ApplicationController
 
   def word_list_params
     params.permit(:name, :language)
+  end
+
+  def get_list
+    @word_list = Api::V1::WordList.find(params[:id])
   end
 end
