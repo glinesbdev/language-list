@@ -10,6 +10,7 @@ require 'support/database_cleaner'
 require 'support/factory_bot'
 require 'support/devise_test_helpers'
 require 'support/warden_test_helpers'
+require 'support/shared_examples'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are

@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
-	has_many :word_lists, class_name: 'Api::V1::WordList'
+	has_many :word_lists, class_name: 'Api::V1::WordList', dependent: :destroy
   before_create :skip_confirmation!
+  validates :email, uniqueness: { case_sensitive: false } 
 
   # Include default devise modules.
   devise :database_authenticatable, :registerable,
@@ -12,6 +13,7 @@ class User < ActiveRecord::Base
 
   def to_builder
     Jbuilder.new do |user|
+      user.(self, :id, :email, :uid, :username, :admin)
       user.url user_path(id: self.id)
     end
   end

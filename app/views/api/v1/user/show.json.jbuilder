@@ -1,0 +1,1 @@
+json.user @user.to_builder
