@@ -101,8 +101,12 @@ RSpec.describe Api::V1::UserController, type: :controller do
 
 		include_examples 'default responses'
 
-		it 'should delete a user' do
+		it 'should display a message' do
 			expect(parsed_response['message']).to eq('test@email.com was deleted')
+		end
+
+		it 'should delete a user' do
+			expect(User.first).to be_nil
 		end
 	end
 end

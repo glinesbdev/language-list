@@ -1,7 +1,11 @@
 class Api::V1::WordListItemController < ApplicationController
-	before_action :authenticate_user!
-	before_action :get_item, except: [:create]
-	before_action :get_list, except: [:destroy]
+	include Api::V1::WordListItemConcerns
+
+	def index
+		@items = Api::V1::WordListItem.all
+
+		render :index
+	end
 
 	def show
 		render :show
@@ -33,19 +37,5 @@ class Api::V1::WordListItemController < ApplicationController
 		else
 			render :error
 		end
-	end
-
-	private
-
-	def word_list_item_params
-		params.permit(:word, :translation, :context, :word_list_id)
-	end
-
-	def get_item
-		@item = Api::V1::WordListItem.find(params[:id])
-	end
-
-	def get_list
-		@list = Api::V1::WordList.find(@item.word_list_id)
 	end
 end

@@ -100,7 +100,7 @@ RSpec.describe Api::V1::WordListController, type: :controller do
 		end
 
 		it 'should delete a word list' do
-			expect(parsed_response['list']).to be_nil
+			expect(Api::V1::WordList.first).to be_nil
 		end
 	end
 end

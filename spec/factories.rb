@@ -30,11 +30,11 @@ FactoryBot.define do
 	end
 
 	factory :word_list_item, class: Api::V1::WordListItem do
-		id 1
+		id 5
 		word 'gut'
 		translation 'good'
 		context 'Gut essen!'
-		word_list_id 1
+		word_list_id 10
 		created_at DateTime.now
 		updated_at DateTime.now
 	end
