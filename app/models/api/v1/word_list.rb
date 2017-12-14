@@ -1,5 +1,7 @@
 class Api::V1::WordList < ApplicationRecord
-	has_many :word_list_items, class_name: 'Api::V1::WordListItem'
+	include Rails.application.routes.url_helpers
+
+	has_many :word_list_items, class_name: 'Api::V1::WordListItem', dependent: :destroy
 	belongs_to :user
 
 	def to_builder
@@ -13,6 +15,7 @@ class Api::V1::WordList < ApplicationRecord
 			end
 
 			list.user user.to_builder
+			list.url word_list_path(id: self.id)
 		end
 	end
 end

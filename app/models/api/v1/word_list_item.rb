@@ -5,6 +5,7 @@ class Api::V1::WordListItem < ApplicationRecord
 	def to_builder
 		Jbuilder.new do |item|
 			item.(self, :word, :translation, :context, :created_at, :updated_at)
+			item.url word_list_item_path(id: self.id)
 			item.word_list_url word_list_path(id: self.word_list_id)
 		end
 	end

@@ -21,7 +21,7 @@ FactoryBot.define do
 	end
 
 	factory :word_list, class: Api::V1::WordList do
-		id 1
+		id 10
 		name 'Factory List'
 		language 'German'
 		user_id 2
