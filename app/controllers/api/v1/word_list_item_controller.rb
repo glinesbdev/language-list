@@ -2,9 +2,13 @@ class Api::V1::WordListItemController < ApplicationController
 	include Api::V1::WordListItemConcerns
 
 	def index
-		@items = Api::V1::WordListItem.all
+		begin
+			@items = Api::V1::WordListItem.all
 
-		render :index
+			render :index
+		rescue Exception => e
+			render json: { error: e }
+		end
 	end
 
 	def show
@@ -12,30 +16,42 @@ class Api::V1::WordListItemController < ApplicationController
 	end
 
 	def create
-		@item = Api::V1::WordListItem.new(word_list_item_params)
+		begin
+			@item = Api::V1::WordListItem.new(word_list_item_params)
 
-		if @item.save
-			render :show
-		else
-			render :error
-		end
+			if @item.save
+				render :show
+			else
+				render :error
+			end
+		rescue Exception => e
+      render json: { error: e }
+    end
 	end
 
 	def update
-		if @item.update(word_list_item_params)
-			render :show
-		else
-			render :error
-		end
+		begin
+			if @item.update(word_list_item_params)
+				render :show
+			else
+				render :error
+			end
+		rescue Exception => e
+      render json: { error: e }
+    end
 	end
 
 	def destroy
-		word = @item.word
+		begin
+			word = @item.word
 
-		if @item.destroy
-			render json: { message: "#{word} was deleted" }
-		else
-			render :error
-		end
+			if @item.destroy
+				render json: { message: "#{word} was deleted" }
+			else
+				render :error
+			end
+		rescue Exception => e
+      render json: { error: e }
+    end
 	end
 end

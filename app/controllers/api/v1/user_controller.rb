@@ -2,39 +2,65 @@ class Api::V1::UserController < ApplicationController
 	include Api::V1::UserConcerns
 
 	def index
-		@users = User.all
+		begin
+			@users = User.all
 
-		render :index
+			render :index
+		rescue Exception => e
+			render json: { error: e }
+		end
 	end
 
 	def show
-		render :show
+		begin
+			render :show
+		rescue Exception => e
+			render json: { error: e }
+		end
 	end
 
 	def create
-		@user = User.new(user_params)
+		begin
+			@user = User.new(user_params)
 
-		if @user.save
-			render :show
-		else
-			render :error
+			if @user.save
+				render :show
+			else
+				render :error
+			end
+		rescue Exception => e
+			render json: { error: e }
 		end
 	end
 
 	def update
-		if @user.update_attributes(user_params)
-			render :show
-		else
-			render :error
+		begin
+			if @user.update_attributes(user_params)
+				render :show
+			else
+				render :error
+			end
+		rescue Exception => e
+			render json: { error: e }
 		end
 	end
 
 	def destroy
-		email = @user.email
-		if @user.destroy
-			render json: { message: "#{email} was deleted" }
-		else
-			render :error
+		begin
+			email = @user.email
+			if @user.destroy
+				render json: { message: "#{email} was deleted" }
+			else
+				render :error
+			end
+		rescue Exc= @item.word
+
+			if @item.destroy
+				render json: { message: "#{word} was deleted" }
+			else
+				render :error
+			endeption => e
+			render json: { error: e }
 		end
 	end
 end
