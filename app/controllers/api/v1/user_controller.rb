@@ -53,13 +53,7 @@ class Api::V1::UserController < ApplicationController
 			else
 				render :error
 			end
-		rescue Exc= @item.word
-
-			if @item.destroy
-				render json: { message: "#{word} was deleted" }
-			else
-				render :error
-			endeption => e
+		rescue Exception => e
 			render json: { error: e }
 		end
 	end
