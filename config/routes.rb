@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     	resources :user, controller: 'api/v1/user'
       resources :word_list, controller: 'api/v1/word_list'
       resources :word_list_item, controller: 'api/v1/word_list_item'
+      post 'translate', controller: 'api/v1/translate', action: :index
     end
   end
 end
