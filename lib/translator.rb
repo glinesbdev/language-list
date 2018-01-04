@@ -3,7 +3,7 @@ class Translator
     EasyTranslate.api_key = ENV['GOOGLE_TRANSLATE_API_KEY']
   end
 
-  def translate(to, from, *args)
+  def translate(from, to, *args)
     EasyTranslate.translate(args, from: from.downcase.to_sym, to: to.downcase.to_sym)
   end
 
@@ -19,5 +19,14 @@ class Translator
     end
 
     results
+  end
+
+  def languages
+    languages = []
+    EasyTranslate::LANGUAGES.each do |key, value|
+      languages << value.capitalize
+    end
+
+    languages
   end
 end

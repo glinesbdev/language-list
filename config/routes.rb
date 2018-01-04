@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :word_list, controller: 'api/v1/word_list'
       resources :word_list_item, controller: 'api/v1/word_list_item'
       post 'translate', controller: 'api/v1/translate', action: :index
+      get 'translate/langauges', controller: 'api/v1/translate', action: :languages
     end
   end
 end

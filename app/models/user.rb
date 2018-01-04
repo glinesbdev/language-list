@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 
   def to_builder
     Jbuilder.new do |user|
-      user.(self, :id, :email, :uid, :username, :admin)
+      user.(self, :id, :email, :uid, :username, :admin, :language)
       user.url user_path(id: self.id)
     end
   end

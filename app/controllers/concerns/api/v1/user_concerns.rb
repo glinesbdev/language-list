@@ -11,7 +11,7 @@ module Api
 			private 
 
 			def user_params
-				params.permit(:email, :username, :admin, :password, :password_confirmation)
+				params.permit(:email, :username, :admin, :language, :password, :password_confirmation)
 			end	
 
 			def find_user
