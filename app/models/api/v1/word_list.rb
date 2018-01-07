@@ -12,6 +12,8 @@ class Api::V1::WordList < ApplicationRecord
 				list.items self.word_list_items do |item|
 					list.item item.to_builder
 				end
+			else
+				list.items nil
 			end
 
 			list.user user.to_builder
