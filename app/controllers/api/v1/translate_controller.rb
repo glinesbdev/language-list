@@ -1,5 +1,4 @@
 class Api::V1::TranslateController < ApplicationController
-  before_action :authenticate_user!
   before_action :get_params
   before_action :setup_translator
 
